@@ -1,0 +1,33 @@
+type Token {
+  id: ID!
+  owner_id: String!
+  event_id: String
+  transfers: [Transfer!]! @derivedFrom(field: "token_id")
+  transferCount: BigInt!
+  created: BigInt!
+  mintOrder: BigInt
+}
+
+type Account {
+  id: ID!
+  tokens: [Token!]! @derivedFrom(field: "owner_id")
+  tokensOwned: BigInt!
+}
+
+type Event {
+  id: ID!
+  tokens: [Token!]! @derivedFrom(field: "event_id")
+  tokenCount: BigInt!
+  created: BigInt!
+  transferCount: BigInt!
+  tokenMints: BigInt!
+}
+
+type Transfer {
+  id: ID!
+  token_id: String!
+  from_id: String!
+  to_id: String!
+  transaction: String!
+  timestamp: BigInt!
+}

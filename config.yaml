@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: poap-indexer
+description: POAP Indexer
+
+field_selection:
+  transaction_fields:
+    - hash
+
+contracts:
+  - name: Poap
+    abi_file_path: ./abis/Poap.json
+    events:
+      - event: "EventToken(uint256 eventId,uint256 tokenId)"
+      - event: "Transfer(address indexed from,address indexed to,uint256 indexed tokenId)"
+
+chains:
+  - id: 1 # Ethereum Mainnet
+    start_block: 7844214
+    contracts:
+      - name: Poap
+        address: "0x22C1f6050E56d2876009903609a2cC3fEf83B415"
